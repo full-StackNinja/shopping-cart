@@ -87,6 +87,12 @@ export const ProductDetailPage = () => {
           <p className="total-price-text">Total:</p>
           <p className="total-price-value">{product.price * cartQuantity + "$"}</p>
         </div>
+        <div className=" buy-btns">
+          <button className="checkout">Checkout</button>
+          <button className="add-to-cart" onClick={handleAddToCart} disabled={addedToCart}>
+            {addedToCart ? "Added To Cart" : "Add to Cart"}
+          </button>
+        </div>
       </div>
     </div>
   );
