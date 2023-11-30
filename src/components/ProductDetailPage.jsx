@@ -82,6 +82,11 @@ export const ProductDetailPage = () => {
             </button>
           </div>
         </div>
+
+        <div className="total-price-calculate">
+          <p className="total-price-text">Total:</p>
+          <p className="total-price-value">{product.price * cartQuantity + "$"}</p>
+        </div>
       </div>
     </div>
   );
