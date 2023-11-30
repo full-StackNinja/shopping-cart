@@ -63,7 +63,25 @@ export const ProductDetailPage = () => {
         <hr />
         <p className="unit-price">{product.price + "$"}/unit</p>
         <hr />
-        
+        <div className="add-quantity">
+          <p className="quantity-text">Quantity:</p>
+          <div className="quantity-field-container">
+            <button className="minus" onClick={handleDecrement} disabled={cartQuantity === 1}>
+              &#45;
+            </button>
+            <input
+              type="number"
+              name="quantity"
+              id="input-quantity"
+              value={cartQuantity}
+              readOnly
+            />
+            <button className="plus" onClick={handleIncrement} disabled={cartQuantity === 9}>
+              {" "}
+              &#43;
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
