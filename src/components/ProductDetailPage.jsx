@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useOutletContext } from "react-router-dom";
+import { Link, useLocation, useOutletContext } from "react-router-dom";
 
 export const ProductDetailPage = () => {
   const { state } = useLocation();
@@ -7,18 +7,6 @@ export const ProductDetailPage = () => {
   const [cartQuantity, setCartQuantity] = useState(1);
   const [totalItems, setTotalItems] = useOutletContext();
   const [addedToCart, setAddedToCart] = useState(false);
-
-  /*const product = {
-    category: "men's clothing",
-    description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    id: 1,
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    price: 109.95,
-    rating: { rate: 3.9, count: 120 },
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-  };
-  */
 
   const handleDecrement = () => {
     if (cartQuantity > 1) {
@@ -44,10 +32,8 @@ export const ProductDetailPage = () => {
       quantity: cartQuantity,
     };
     const updatedItems = { ...totalItems };
-    // console.log("Cart before adding:", totalItems);
     updatedItems[product.id] = newProduct;
     setTotalItems(updatedItems);
-    // console.log("Cart after update", totalItems);
     setAddedToCart(true);
   };
 
@@ -88,7 +74,11 @@ export const ProductDetailPage = () => {
           <p className="total-price-value">{product.price * cartQuantity + "$"}</p>
         </div>
         <div className=" buy-btns">
-          <button className="checkout">Checkout</button>
+          <Link to={"/shop-cart"}>
+            <button className="checkout" disabled={!addedToCart}>
+              Checkout
+            </button>
+          </Link>
           <button className="add-to-cart" onClick={handleAddToCart} disabled={addedToCart}>
             {addedToCart ? "Added To Cart" : "Add to Cart"}
           </button>
