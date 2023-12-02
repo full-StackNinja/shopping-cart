@@ -1,10 +1,13 @@
 import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CartProduct } from "./CartProduct";
 
 export const ShopCart = () => {
   const [totalItems, setTotalItems] = useOutletContext();
   const totalItemsList = Object.values(totalItems);
-
+  const totalPrice = totalItemsList.reduce((sum, currentItem) => {
+    return sum + currentItem.product.price * currentItem.quantity;
+  }, 0);
   const handleIncrement = (productId, quantity) => {
     const modifiedItems = { ...totalItems };
     const reqProduct = modifiedItems[productId];
@@ -18,11 +21,20 @@ export const ShopCart = () => {
     reqProduct.quantity = quantity > 1 ? quantity - 1 : 1;
     setTotalItems(modifiedItems);
   };
+
+  const handleCart = () => {
+    setTotalItems({});
+  };
+
   return (
-    <div className="cart-list">
-      <ul>
+    <div
+      className="cart-list-container"
+      style={{
+        border: totalPrice > 0 && "1px solid #450a0a",
+      }}
+    >
+      <ul className="cart-list">
         {totalItemsList.map((item) => {
-          console.log("item keys are", item.product.id);
           return (
             <li key={item.product.id}>
               <CartProduct
@@ -33,7 +45,21 @@ export const ShopCart = () => {
             </li>
           );
         })}
+        {}
       </ul>
+      {totalPrice > 0 && (
+        <>
+          <div className="total-cart-price">
+            <p className="cart-price-text">Total Price:</p>
+            <p className="cart-price-value">${totalPrice.toFixed(2)}</p>
+          </div>
+          <Link to={"/order-placed"}>
+            <button className="checkout" onClick={handleCart}>
+              Place Order
+            </button>
+          </Link>
+        </>
+      )}
     </div>
   );
 };
