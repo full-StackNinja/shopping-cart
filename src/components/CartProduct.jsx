@@ -5,9 +5,9 @@ export const CartProduct = ({ item, handleDecrement, handleIncrement }) => {
       <img src={product.image} alt={product.title} />
       <div className="product-detail">
         <h2>{product.title}</h2>
-        <hr />
+        
         <p className="unit-price">{product.price + "$/unit"}</p>
-        <hr />
+        
         <div className="add-quantity">
           <p className="quantity-text">Quantity:</p>
           <div className="quantity-field-container">
