@@ -42,23 +42,32 @@ export const ShopCart = () => {
                 handleDecrement={handleDecrement}
                 handleIncrement={handleIncrement}
               />
+              <hr />
             </li>
           );
         })}
         {}
       </ul>
-      {totalPrice > 0 && (
+      {totalPrice > 0 ? (
         <>
           <div className="total-cart-price">
             <p className="cart-price-text">Total Price:</p>
             <p className="cart-price-value">${totalPrice.toFixed(2)}</p>
           </div>
-          <Link to={"/order-placed"}>
-            <button className="checkout" onClick={handleCart}>
+        
+          <Link to={"/order-placed"} className="place-order-link">
+            <button className="checkout place-order" onClick={handleCart}>
               Place Order
             </button>
           </Link>
         </>
+      ) : (
+        
+          <div className="empty-cart-message">
+            <h1>Your cart is empty!</h1>
+            <p>Shop something then come to checkout please!</p>
+          </div>
+        
       )}
     </div>
   );
