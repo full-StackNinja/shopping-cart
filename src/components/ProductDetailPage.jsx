@@ -6,7 +6,7 @@ export const ProductDetailPage = () => {
   const product = state.product;
   const [cartQuantity, setCartQuantity] = useState(1);
   const [totalItems, setTotalItems] = useOutletContext();
-  const [addedToCart, setAddedToCart] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(Object.keys(totalItems).length !== 0);
 
   const handleDecrement = () => {
     if (cartQuantity > 1) {
