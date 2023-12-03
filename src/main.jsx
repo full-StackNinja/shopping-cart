@@ -15,6 +15,7 @@ import { ErrorPage } from "./components/ErrorPage";
 import { ProductDetailPage } from "./components/ProductDetailPage";
 import { Home } from "./components/Home";
 import { ShopCart } from "./components/ShopCart";
+import { ThankYouMessage } from "./components/ThankYouMessage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         element: <MainContent />,
       },
       {
+        path: "/",
+        element: <Home />,
+      },
+      {
         path: "/home",
         element: <Home />,
       },
@@ -37,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/product-detail-page/:productId",
         element: <ProductDetailPage />,
+      },
+      {
+        path: "/order-placed",
+        element: <ThankYouMessage />,
       },
     ],
   },
