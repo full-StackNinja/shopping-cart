@@ -6,4 +6,4 @@
 - This project is build using Vite + ReactJS.
   styling is done using separate styles sheets.
 
-## [Live Preview](https://shopping-cart-pi-flame.vercel.app/)
+## [Live Preview](https://shopping-cart-4alcc2513-full-stackninjas-projects.vercel.app/)
