@@ -14,7 +14,9 @@ export function MainContent({}) {
     fetch(endPointUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`An HTTP error occured with status code: ${response.status}`);
+          throw new Error(
+            `An HTTP error occured with status code: ${response.status}`
+          );
         }
         return response.json();
       })
@@ -42,9 +44,16 @@ export function MainContent({}) {
     <div className="main-section">
       {loading ? (
         <h1 className="loading-message">Loading Data...</h1>
+      ) : error ? (
+        <p>{error}</p>
       ) : (
+        data &&
         data.map((product) => (
-          <ProductCard key={product.id} product={product} handleAddToCart={handleAddToCart} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            handleAddToCart={handleAddToCart}
+          />
         ))
       )}
     </div>
